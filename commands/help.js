@@ -13,28 +13,30 @@ module.exports = {
   usage: undefined,
   async execute(msg, args) {
     const { commands } = msg.client;
-    const generalEmbed = new Discord.RichEmbed().setTitle("General Commands").setColor("BLUE");
-    const healthEmbed = new Discord.RichEmbed().setTitle("Health Commands").setColor("BLUE");
-    const meetupEmbed = new Discord.RichEmbed().setTitle("Meetup Commands").setColor("BLUE");
+    const embed = new Discord.RichEmbed().setTitle("Command List").setColor("BLUE");
 
-    generalEmbed.addField("**status (Admins & Mods)** *<text>*", " - Sets a custom status for the bot");
+    let generalCommands = "\n\`\`\`GENERAL\`\`\`\n";
+    let healthCommands = "\n\`\`\`HEALTH\`\`\`\n";
+    let meetupCommands = "\n\`\`\`MEETUP\`\`\`\n";
 
     commands.map(command => {
       const argsList = (command.usage != undefined) ? `*${command.usage}*` : "";
       const adminOnly = (command.roleRequired) ? "(Admins & Mods)" : "";
       if (command.group === "health") {
-        healthEmbed.addField(`**${command.name} ${adminOnly}** ${argsList}`, ` - ${command.description}`);
+        healthCommands += `* **${command.name} ${adminOnly}** ${argsList} - ${command.description}\n`;
       } else if (command.group === "meetup") {
-        meetupEmbed.addField(`**${command.name} ${adminOnly}** ${argsList}`, ` - ${command.description}`);
+        meetupCommands += `* **${command.name} ${adminOnly}** ${argsList} - ${command.description}\n`;
       } else {
-        generalEmbed.addField(`**${command.name} ${adminOnly}** ${argsList}`, ` - ${command.description}`);
+        generalCommands += `* **${command.name} ${adminOnly}** ${argsList} - ${command.description}\n`;
       }
     });
 
+    generalCommands += "* **status (Admins & Mods)** *<text>* - Sets a custom status for the bot\n";
+    const allCommands = generalCommands + healthCommands + meetupCommands;
+    embed.setDescription(allCommands);
+
     try {
-      const msg1 = await msg.author.send(generalEmbed);
-      await msg.author.send(healthEmbed);
-      await msg.author.send(meetupEmbed);
+      msg.author.send(embed);
       if (msg.channel.type === 'dm') return;
       else msg.reply("I sent you a DM with all my commands");
     } catch (e) {
