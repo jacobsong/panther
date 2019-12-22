@@ -2,6 +2,7 @@ const Player = require("../models/Player");
 
 module.exports = {
   name: "reset",
+  group: "health",
   description: "Reset an individual's event progress",
   guildOnly: true,
   roleRequired: 1, // 0=None 1=Admin

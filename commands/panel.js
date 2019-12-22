@@ -4,6 +4,7 @@ const Event = require("../models/Event");
 
 module.exports = {
   name: "panel",
+  group: "health",
   description: "Display event status and everyone's progress",
   guildOnly: true,
   roleRequired: 0, // 0=None 1=Admin

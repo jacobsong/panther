@@ -3,6 +3,7 @@ const Event = require("../models/Event");
 
 module.exports = {
   name: "update",
+  group: "health",
   description: "Updates your progress for the event (respond within 60 seconds)",
   guildOnly: true,
   roleRequired: 0, // 0=None 1=Admin
@@ -34,10 +35,10 @@ module.exports = {
     }
     
     try {
-      msg.reply("How many miles did you run?");
+      msg.reply("How many miles did you complete?");
       let miles = await msg.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ["time"] });
       while (isResponseValid(miles.first().content) === false) {
-        msg.reply("How many miles did you run?");
+        msg.reply("How many miles did you complete?");
         miles = await msg.channel.awaitMessages(filter, { max: 1, time: 60000, errors: ["time"] });
       }
 

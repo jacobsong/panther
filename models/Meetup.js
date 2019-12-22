@@ -10,6 +10,7 @@ const meetupSchema = new Schema(
     desc: String,
     location: String,
     date: String,
+    poc: String,
     attendees: [{
       _id: String,
       discordName: String

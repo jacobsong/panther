@@ -2,6 +2,7 @@ const Event = require("../models/Event");
 
 module.exports = {
   name: "event",
+  group: "health",
   description: "Create an event for people to register in (respond within 60 seconds)",
   guildOnly: true,
   roleRequired: 1, // 0=None 1=Admin

@@ -12,7 +12,7 @@ const checkCommand = (msg, command, args) => {
   if (command.roleRequired) {
     let isAdmin = false;
     msg.member.roles.some((role) => { 
-      if (role.name === 'admin') {
+      if (role.name === 'admin' || role.name === 'Mod') {
         isAdmin = true;
       }
     });

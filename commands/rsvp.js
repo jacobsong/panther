@@ -3,6 +3,7 @@ const Meetup = require("../models/Meetup");
 
 module.exports = {
   name: "rsvp",
+  group: "meetup",
   description: "RSVP for a meetup (react within 60 seconds)",
   guildOnly: true,
   roleRequired: 0, // 0=None 1=Admin
@@ -25,7 +26,7 @@ module.exports = {
 
     meetups.forEach((meetup, i) => {
       embed.addField(`${allNums[i]} Created by ${meetup.creatorName}`,
-        `Date: ${meetup.date}\nLocation: ${meetup.location}\nDescription: ${meetup.desc}\nAttending: ${meetup.attendees.length} people`);
+        `Date: ${meetup.date}\nLocation: ${meetup.location}\nDescription: ${meetup.desc}\nPoint of Contact: ${meetup.poc}\nAttending: ${meetup.attendees.length} people`);
     })
 
     try {

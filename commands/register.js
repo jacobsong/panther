@@ -2,6 +2,7 @@ const Player = require("../models/Player");
 
 module.exports = {
   name: "register",
+  group: "health",
   description: "Register for the current event",
   guildOnly: true,
   roleRequired: 0, // 0=None 1=Admin

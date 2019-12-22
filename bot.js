@@ -37,8 +37,12 @@ client.on("message", async message => {
   const commandName = args.shift().toLowerCase();
 
   if (commandName === "status") {
-    const newStatus = args.join(" ");
-    client.user.setPresence({ game: { name: `${newStatus}` } });
+    message.member.roles.some((role) => { 
+      if (role.name === 'admin' || role.name === 'Mod') {
+        const newStatus = args.join(" ");
+        client.user.setPresence({ game: { name: `${newStatus}` } });
+      }
+    });
   }
 
   if (!client.commands.has(commandName)) return;

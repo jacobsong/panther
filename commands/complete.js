@@ -3,6 +3,7 @@ const Player = require("../models/Player");
 
 module.exports = {
   name: "complete",
+  group: "health",
   description: "Complete the current event and reset everything",
   guildOnly: true,
   roleRequired: 1, // 0=None 1=Admin
