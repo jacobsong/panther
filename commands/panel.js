@@ -37,7 +37,7 @@ module.exports = {
 
       if (players.length) {
         players.forEach((player, i) => {
-          embed.addField(`${i + 1}. ${player.discordName}`, `completed ${player.miles} miles`);
+          embed.addField(`${i + 1}. ${player.discordName}`, `completed ${player.miles.toFixed(2)} miles`);
         })
       }
 
