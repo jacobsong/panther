@@ -47,7 +47,10 @@ module.exports = {
         const choice = validNums.indexOf(collected.first().emoji.name);
         const exists = await Meetup.exists({ _id: meetups[choice]._id, attendees: { $elemMatch: { _id: msg.author.id } } })
         if (exists) {
-          msg.reply("You have already RSVP'd for that event");
+          await Meetup.updateOne(
+            { _id: meetups[choice]._id },
+            { $pull: { attendees : { _id: msg.author.id, discordName: msg.author.tag } } } );
+          msg.reply("You have been removed from the RSVP list");
           return;
         }
         await Meetup.updateOne(
