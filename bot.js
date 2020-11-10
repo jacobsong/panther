@@ -17,7 +17,7 @@ for (const file of commandFiles) {
 
 // Verify connected and set presence
 client.once("ready", () => {
-  console.log(`Connected as ${client.user.tag}\n`);
+  console.log(`Connected as ${client.user.tag}`);
   client.user.setPresence({ game: { name: `type ${config.prefix}help` } });
 });
 
